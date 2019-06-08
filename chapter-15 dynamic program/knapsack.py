@@ -34,14 +34,11 @@ def knapsack_mem_optimize(w, v, W):
                 current_c[j] = prev_c[j]
             else:
                 new_v = prev_c[j - w[i - 1]] + v[i - 1]
-                print j, w[i - 1], prev_c[j - w[i - 1]], v[i - 1], new_v, prev_c[j]
                 if new_v > prev_c[j]:
                     current_c[j] = new_v
                     b[i][j] = 1
                 else:
                     current_c[j] = prev_c[j]
-
-            print i, j, current_c[j]
 
     return current_c[W], b
 
@@ -62,10 +59,10 @@ def knapsack_test():
     W = 10
     # max_value, b = knapsack(w, v, W)
     max_value, b = knapsack_mem_optimize(w, v, W)
-    print max_value
+    print "max value is: ", max_value
     result = []
     print_knapsack_result(b, w, result, len(w), W)
-    print ' '.join(map(str, result))
+    print "choose items: ", ' '.join(map(str, result))
 
 
 if __name__ == "__main__":
